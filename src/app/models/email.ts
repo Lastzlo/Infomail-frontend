@@ -9,6 +9,10 @@ export interface Recipient {
   recipientType: RecipientType;
 }
 
+export interface EmailsHistoryPage {
+  content: ExecutedEmail[];
+}
+
 export interface ExecutedEmail {
   id: number;
   dateTime: Date;

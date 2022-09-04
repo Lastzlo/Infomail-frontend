@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
-import {EmailWithTemplate, ExecutedEmail} from "../models/email";
+import {EmailsHistoryPage, EmailWithTemplate, ExecutedEmail} from "../models/email";
 import {Observable} from "rxjs";
 
 @Injectable({
@@ -17,7 +17,7 @@ export class HistoryService {
     let emailsPagination = new HttpParams()
       .set('page', page).set('rows', rows)
       .set('sortField', sortField).set('sortOrder', sortOrder)
-    return this.httpClient.get<ExecutedEmail[]>("/api/v1/history", {params: emailsPagination});
+    return this.httpClient.get<EmailsHistoryPage>("/api/v1/history", {params: emailsPagination});
   }
 
   getEmailById(emailId: number): Observable<EmailWithTemplate> {

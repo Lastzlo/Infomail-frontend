@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ConfirmationService, LazyLoadEvent} from "primeng/api";
 import {HistoryService} from "../../../services/history.service";
-import {ExecutedEmail} from "../../../models/email";
+import {EmailsHistoryPage, ExecutedEmail} from "../../../models/email";
 import {PopupMessageService} from "../../../services/utils/popup-message.service";
 import {ActivatedRoute, Router} from "@angular/router";
 
@@ -80,7 +80,7 @@ export class HistoryComponent implements OnInit {
   private getCurrentHistoryPage(page: number, rows: number, sortFiled: string, sortOrder: number) {
 
     this.historyService.getPaginatedHistory(page, rows, sortFiled, sortOrder).subscribe({
-      next: (emails: ExecutedEmail[]) => this.emails = emails,
+      next: (historyPage: EmailsHistoryPage) => this.emails = historyPage.content,
       error: () => {
         setTimeout(() => {
           this.popupMessageService.showFailed("Couldn't load emails history!");
