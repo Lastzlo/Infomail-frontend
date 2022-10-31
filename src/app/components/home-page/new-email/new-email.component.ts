@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {EmailService} from "../../../services/email.service";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
 import {Email, EmailSchedule, EmailTemplate, Recipient, RecipientType, TemplateAsOption} from "../../../models/email";
 import {PopupMessageService} from "../../../services/utils/popup-message.service";
 import {UserEmailTemplateService} from "../../../services/user-email-template.service";
@@ -39,15 +39,15 @@ export class NewEmailComponent implements OnInit {
   //for emailSchedule
   isSendNotNow = false;
 
-  emailForm: FormGroup = new FormGroup({
-    emailTemplate: new FormGroup({
-      body: new FormControl('', Validators.required),
-      subject: new FormControl('', Validators.required)
+  emailForm: UntypedFormGroup = new UntypedFormGroup({
+    emailTemplate: new UntypedFormGroup({
+      body: new UntypedFormControl('', Validators.required),
+      subject: new UntypedFormControl('', Validators.required)
     }),
-    recipients: new FormGroup({
-      recipientsTO: new FormControl([], Validators.required),
-      recipientsCC: new FormControl([]),
-      recipientsBCC: new FormControl([])
+    recipients: new UntypedFormGroup({
+      recipientsTO: new UntypedFormControl([], Validators.required),
+      recipientsCC: new UntypedFormControl([]),
+      recipientsBCC: new UntypedFormControl([])
     })
   });
 

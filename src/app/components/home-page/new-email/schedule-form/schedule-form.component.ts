@@ -1,6 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {RepeatType, RepeatTypeAsOption} from "../../../../models/email";
-import {AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn} from "@angular/forms";
+import {AbstractControl, UntypedFormControl, UntypedFormGroup, ValidationErrors, ValidatorFn} from "@angular/forms";
 
 @Component({
   selector: 'app-schedule-form',
@@ -10,7 +10,7 @@ import {AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn} 
 export class ScheduleFormComponent implements OnInit {
 
   @Output()
-  formGroupEE = new EventEmitter<FormGroup>();
+  formGroupEE = new EventEmitter<UntypedFormGroup>();
 
   defRepeatAt: RepeatTypeAsOption = {name: "Nothing", repeatType: RepeatType.NOTHING}
   repeatTypeAsOptions:RepeatTypeAsOption[] = [
@@ -24,12 +24,12 @@ export class ScheduleFormComponent implements OnInit {
   MIN_DATE_SendDateTime = this.dateAdd(new Date(), 'minute', 4);
   MIN_DATE_EndDate = this.dateAdd(new Date(), 'minute', 10);
 
-  form: FormGroup = new FormGroup({
-    sendDateTime: new FormControl(
+  form: UntypedFormGroup = new UntypedFormGroup({
+    sendDateTime: new UntypedFormControl(
       this.dateAdd(new Date(), 'minute', 10),
       [this.timeIsOver('minute', 4)]),
-    repeatTypeAsOption: new FormControl(this.defRepeatAt),
-    endDate: new FormControl(
+    repeatTypeAsOption: new UntypedFormControl(this.defRepeatAt),
+    endDate: new UntypedFormControl(
       new Date(),
       [this.dayIsOver()]),
   })

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {User} from "../../../models/user";
 import {RegistrationService} from "../../../services/registration.service";
@@ -17,17 +17,17 @@ export class RegistrationFormComponent implements OnInit {
 
   showContent = true;
 
-  form: FormGroup = new FormGroup({
-    email: new FormControl('', [
+  form: UntypedFormGroup = new UntypedFormGroup({
+    email: new UntypedFormControl('', [
       Validators.email,
       Validators.required
     ]),
-    password: new FormControl('', [
+    password: new UntypedFormControl('', [
       Validators.required,
       Validators.maxLength(24),
       Validators.minLength(8)
     ]),
-    password2: new FormControl('', [Validators.required]),
+    password2: new UntypedFormControl('', [Validators.required]),
   })
 
   constructor(

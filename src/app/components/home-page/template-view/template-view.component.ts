@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
 import {AngularEditorConfig} from "@kolkov/angular-editor";
 import {EmailTemplate} from "../../../models/email";
 import {UserEmailTemplateService} from "../../../services/user-email-template.service";
@@ -63,12 +63,12 @@ export class TemplateViewComponent implements OnInit {
   @Output()
   onError: EventEmitter<any> = new EventEmitter<any>();
 
-  form: FormGroup = new FormGroup({
-    userEmail: new FormControl(''),
-    sharingLink: new FormControl(''),
-    name: new FormControl('', [Validators.required]),
-    body: new FormControl('', [Validators.required]),
-    subject: new FormControl('', [Validators.required]),
+  form: UntypedFormGroup = new UntypedFormGroup({
+    userEmail: new UntypedFormControl(''),
+    sharingLink: new UntypedFormControl(''),
+    name: new UntypedFormControl('', [Validators.required]),
+    body: new UntypedFormControl('', [Validators.required]),
+    subject: new UntypedFormControl('', [Validators.required]),
   });
 
   get userEmail() {
