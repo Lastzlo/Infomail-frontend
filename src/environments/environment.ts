@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  API_URL: 'http://localhost:8028',  // test api url
-  FRONT_URL: 'http://localhost:4200' // test front url
+  API_URL: process.env.NG_APP_API_URL  || 'http://localhost:8028',
+  FRONT_URL: process.env.NG_APP_FRONT_URL || 'http://localhost:4200'
 };
 
 

@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {PrimeNGConfig} from "primeng/api";
+import {environment} from "../environments/environment";
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,9 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.primengConfig.ripple = true;
+    // redundant
+    console.log("FRONT_URL", environment.FRONT_URL)
+    console.log("API_URL", environment.API_URL)
   }
 
 
