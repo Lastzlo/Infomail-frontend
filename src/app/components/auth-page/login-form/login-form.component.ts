@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {FormControl, FormGroup} from "@angular/forms";
+import {UntypedFormControl, UntypedFormGroup} from "@angular/forms";
 import {User} from "../../../models/user";
 import {AuthenticationService} from "../../../services/authentication.service";
 import {HttpErrorResponse, HttpResponse} from "@angular/common/http";
@@ -16,9 +16,9 @@ export class LoginFormComponent {
   isShowServerMessage: boolean = false;
   serverMessage: string = '';
 
-  form: FormGroup = new FormGroup({
-    email: new FormControl(''),
-    password: new FormControl(''),
+  form: UntypedFormGroup = new UntypedFormGroup({
+    email: new UntypedFormControl(''),
+    password: new UntypedFormControl(''),
   })
 
 
