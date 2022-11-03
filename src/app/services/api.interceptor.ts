@@ -29,7 +29,7 @@ export class ApiInterceptor implements HttpInterceptor {
           const statusCode: number = err.status;
 
           switch (statusCode) {
-            case 401 | 403: {
+            case 401 || 403: {
               this.logout();
               break;
             }
