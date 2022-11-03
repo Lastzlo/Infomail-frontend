@@ -35,10 +35,7 @@ export class HistoryComponent implements OnInit {
    *
    * */
   ngOnInit() {
-    this.beginLoading();
     this.historyService.getTotalNumberOfRows().subscribe(totalRecords => this.totalRecords = totalRecords);
-
-    this.getCurrentHistoryPage(0, this.numberOfRows, 'id', -1);
   }
 
   sliceLongString(str: string, maxLength: number) {
@@ -108,16 +105,18 @@ export class HistoryComponent implements OnInit {
    *  then calls {@link getCurrentHistoryPage getCurrentHistoryPage}
    *    and move window to top of the page
    *
+   * Load of emails when component init
+   *
    *  @param event - LazyLoadEvent of p-table
    *
    * */
   loadEmails(event: LazyLoadEvent) {  //loading emails after changing page/sorter
-    console.log(event);
+    console.log("event", event);
     if (event.rows) {
       this.beginLoading();
 
-      let page = ((!event.first) ? 0 : event.first) / event.rows;
-      let sortField = (!event.sortField) ? 'id' : event.sortField;
+      let page = (event.first ? event.first : 0) / event.rows;
+      let sortField = event.sortField ? event.sortField : 'id';
       let sortOrder = this.initSortOrder(event, sortField);
 
       window.scrollTo(0, 0); // jump to top of the page before loading new content
@@ -134,7 +133,7 @@ export class HistoryComponent implements OnInit {
    *
    * */
   private initSortOrder(event: LazyLoadEvent, sortField: string) {
-    let sortOrder = (!event.sortOrder) ? -1 : event.sortOrder;
+    let sortOrder = event.sortOrder ? event.sortOrder : -1;
 
     if (this.firstLoad || (sortField === 'id')) {
       this.firstLoad = false;
