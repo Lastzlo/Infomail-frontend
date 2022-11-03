@@ -20,6 +20,7 @@ export class HeaderComponent {
   }
 
   onLogout() {
+    this.userService.removeUserEmail();
     this.authService.logout();
   }
 
