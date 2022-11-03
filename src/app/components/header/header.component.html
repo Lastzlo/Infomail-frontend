@@ -1,31 +1,24 @@
-<header
-  class="grid card fluid p-3 pb-3 text-3xl border-3 default-background">
-  <div class="col-2">
-    <a class="m-0 cursor-pointer hover:text-primary text-4xl text-white block no-underline" routerLink="/">
+<p-toolbar>
+  <div class="p-toolbar-group-left">
+    <a class="m-0 cursor-pointer hover:text-primary text-3xl text-white block no-underline" routerLink="/">
       <i class="pi pi-envelope text-primary text-3xl"></i> Info<span class="text-primary">Mail</span></a>
   </div>
 
-  <div *ngIf="isUserAuthenticate(); then user_authenticate else user_not_authenticate"></div>
+  <div class="p-toolbar-group-right">
+    <div *ngIf="isUserAuthenticate(); then user_authenticate else user_not_authenticate"></div>
 
-  <ng-template #user_authenticate>
-    <div class="col-3 col-offset-7">
-      <div class="flex justify-content-end align-items-center">
-        <div class="text-primary text-xl font-normal mr-2">{{this.userEmail}}</div>
-        <button pButton pRipple type="button" label="Log out" icon="pi pi-sign-out" class="p-button-rounded font-semibold"
-                (click)="onLogout()"
-                routerLink="/auth/login"></button>
-      </div>
-    </div>
-  </ng-template>
+    <ng-template #user_authenticate>
+      <div class="text-primary text-xl font-normal mr-2">{{this.userEmail}}</div>
+      <button pButton pRipple type="button" label="Log out" icon="pi pi-sign-out" class="p-button-rounded font-semibold"
+              (click)="onLogout()"
+              routerLink="/auth/login"></button>
+    </ng-template>
 
-  <ng-template #user_not_authenticate>
-    <div class="col-2 col-offset-8">
-      <div class="flex justify-content-end align-items-center">
-        <button pButton pRipple type="button" label="Log in" icon="pi pi-sign-in" class="p-button-text mr-2 font-semibold"
-                routerLink="/auth/login"></button>
-        <button pButton pRipple type="button" label="Sign up" class="p-button-rounded font-semibold"
-                routerLink="/auth/registration"></button>
-      </div>
-    </div>
-  </ng-template>
-</header>
+    <ng-template #user_not_authenticate>
+      <button pButton pRipple type="button" label="Log in" icon="pi pi-sign-in" class="p-button-text mr-2 font-semibold"
+              routerLink="/auth/login"></button>
+      <button pButton pRipple type="button" label="Sign up" class="p-button-rounded font-semibold"
+              routerLink="/auth/registration"></button>
+    </ng-template>
+  </div>
+</p-toolbar>
