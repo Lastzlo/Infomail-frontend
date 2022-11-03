@@ -7,6 +7,8 @@ import {Router} from "@angular/router";
 @Injectable({providedIn: 'root'})
 export class AuthenticationService {
 
+  private STORAGE_AUTH_TOKEN_ID: string = 'authentication_token';
+
   private permitted: string = 'Route permitted';
   private forbidden: string = 'Route forbidden';
 
@@ -14,16 +16,18 @@ export class AuthenticationService {
   }
 
   public hasAuthToken(): boolean {
-    const tokenAtStorage = localStorage.getItem("token");
+    console.log("hasAuthToken")
+    const tokenAtStorage = localStorage.getItem(this.STORAGE_AUTH_TOKEN_ID);
     return tokenAtStorage !== null && tokenAtStorage !== '';
   }
 
   public setAuthToken(token: string): void {
-    localStorage.setItem("token", token);
+    localStorage.setItem(this.STORAGE_AUTH_TOKEN_ID, token);
   }
 
   public getAuthToken(): string {
-    const tokenAtStorage = localStorage.getItem("token");
+    console.log("getAuthToken")
+    const tokenAtStorage = localStorage.getItem(this.STORAGE_AUTH_TOKEN_ID);
     return tokenAtStorage !== null ? tokenAtStorage : '';
   }
 
@@ -42,6 +46,6 @@ export class AuthenticationService {
 
   public logout(): void {
     console.log("Remove token from localStorage");
-    localStorage.removeItem("token");
+    localStorage.removeItem(this.STORAGE_AUTH_TOKEN_ID);
   }
 }
