@@ -123,7 +123,8 @@ export class TasksComponent implements OnInit {
         this.popupMessageService.showSuccess('Task is paused now!');
         // @ts-ignore
         this.tasks.find(x => x.jobName === jobName).state = this.statusPaused;
-      }, error: () => this.popupMessageService.showFailed('Task is not paused!'),
+      },
+      error: () => this.popupMessageService.showFailed('Task is not paused!'),
       complete: () => this.finishLoading()
     });
   }
@@ -135,7 +136,8 @@ export class TasksComponent implements OnInit {
         this.popupMessageService.showSuccess('Task is resumed now!');
         // @ts-ignore
         this.tasks.find(x => x.jobName === jobName).state = this.statusResumed;
-      }, error: () => this.popupMessageService.showFailed('Task is not resumed!'),
+      },
+      error: () => this.popupMessageService.showFailed('Task is not resumed!'),
       complete: () => this.finishLoading()
     });
   }
@@ -150,9 +152,7 @@ export class TasksComponent implements OnInit {
         if (this.tasks.length <= this.minNumberOfTasksOnPage)
           this.ngOnInit();
       },
-      error: () => {
-        this.popupMessageService.showFailed('Task is not deleted!');
-      },
+      error: () => this.popupMessageService.showFailed('Task is not deleted!'),
       complete: () => this.finishLoading()
     });
   }
