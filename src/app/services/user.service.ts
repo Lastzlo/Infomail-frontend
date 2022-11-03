@@ -1,15 +1,25 @@
 import {Injectable} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
-import {User} from "../models/user";
-import {Observable} from "rxjs";
 
 @Injectable({providedIn: 'root'})
 export class UserService {
 
-  constructor(private http: HttpClient){}
+  private STORAGE_USER_EMAIL_ID: string = 'user_email';
 
-  getUsersEmail(): Observable<User>{
-    return this.http.get<User>(`/api/v1/users/email`);
+  public getUserEmail(): string{
+    console.log("get userEmail from localStorage");
+    const userEmailAtStorage = localStorage.getItem(this.STORAGE_USER_EMAIL_ID
+    );
+    return userEmailAtStorage === null ? '' : userEmailAtStorage;
+  }
+
+  public setUserEmail(userEmail: string): void {
+    console.log("set userEmail to localStorage");
+    localStorage.setItem(this.STORAGE_USER_EMAIL_ID, userEmail);
+  }
+
+  public removeUserEmail(): void {
+    console.log("remove userEmail from localStorage");
+    localStorage.removeItem(this.STORAGE_USER_EMAIL_ID);
   }
 
 }
