@@ -51,15 +51,9 @@ export class TemplatesComponent implements OnInit {
     this.templateService.getPaginatedTemplates(page, rows, sortFiled, sortOrder).subscribe({
       next: (templates: EmailTemplate[]) => {
         this.templates = templates
-        this.finishLoading();
       },
-      error: () => {
-        setTimeout(() => {
-          this.popupMessageService.showFailed("Couldn't load templates!");
-          this.finishLoading();
-          this.getCurrentTemplatePage(0, this.numberOfRows, 'id', -1);
-        }, 5 * 1000)  // if failed to load data, recursively try to load templates after 5 seconds
-      }
+      error: () => this.popupMessageService.showFailed("Couldn't load templates!"),
+      complete: () => this.finishLoading()
     });
   }
 
@@ -146,13 +140,10 @@ export class TemplatesComponent implements OnInit {
             this.selectedTemplates = [];
             this.getCurrentTemplatePage(0, this.numberOfRows, this.sortField, this.sortOrder);
 
-            this.finishLoading();
             this.popupMessageService.showSuccess('Template is deleted!');
           },
-          error: () => {
-            this.finishLoading();
-            this.popupMessageService.showFailed('Template is not deleted!');
-          }
+          error: () => this.popupMessageService.showFailed('Template is not deleted!'),
+          complete: () => this.finishLoading()
         });
       }
     });
@@ -176,13 +167,10 @@ export class TemplatesComponent implements OnInit {
             this.selectedTemplates = [];
             this.getCurrentTemplatePage(0, this.numberOfRows, this.sortField, this.sortOrder);
 
-            this.finishLoading();
             this.popupMessageService.showSuccess('Templates are deleted!');
           },
-          error: () => {
-            this.finishLoading();
-            this.popupMessageService.showFailed("Couldn't delete selected templates!");
-          }
+          error: () => this.popupMessageService.showFailed("Couldn't delete selected templates!"),
+          complete: () => this.finishLoading()
         });
       }
     });

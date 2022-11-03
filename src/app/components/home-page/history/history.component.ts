@@ -54,19 +54,15 @@ export class HistoryComponent implements OnInit {
       next: (email: ExecutedEmail) => {
         // @ts-ignore
         this.emails.find(em => em.id === emailId).status = email.status;
-        this.finishLoading();
         this.popupMessageService.showSuccess("Successfully resent!");
       },
-      error: () => {
-        this.finishLoading();
-        this.popupMessageService.showFailed("Resending failed!");
-      }
+      error: () => this.popupMessageService.showFailed("Resending failed!"),
+      complete: () => this.finishLoading()
     });
   }
 
   /**
    *  Get current/selected page of emails
-   *    if failed automatically retries after 5 seconds
    *
    *  @param page - number of current page
    *  @param rows - number of rows to load
@@ -78,13 +74,7 @@ export class HistoryComponent implements OnInit {
 
     this.historyService.getPaginatedHistory(page, rows, sortFiled, sortOrder).subscribe({
       next: (historyPage: EmailsHistoryPage) => this.emails = historyPage.content,
-      error: () => {
-        setTimeout(() => {
-          this.popupMessageService.showFailed("Couldn't load emails history!");
-          this.getCurrentHistoryPage(0, this.numberOfRows, 'id', -1);
-        }, 5 * 1000)  // if failed to load data, recursively try to load emails after 5 seconds
-
-      },
+      error: () => this.popupMessageService.showFailed("Couldn't load emails history!"),
       complete: () => this.finishLoading()
     });
 
