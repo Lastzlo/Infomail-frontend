@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {UntypedFormControl, UntypedFormGroup} from "@angular/forms";
 import {User} from "../../../models/user";
 import {AuthenticationService} from "../../../services/authentication.service";
+import {UserService} from "../../../services/user.service";
 import {HttpErrorResponse, HttpResponse} from "@angular/common/http";
 import {Router} from "@angular/router";
 
@@ -23,6 +24,7 @@ export class LoginFormComponent {
 
 
   constructor(private authService: AuthenticationService,
+              private userService: UserService,
               private router: Router) {
   }
 
@@ -58,7 +60,12 @@ export class LoginFormComponent {
     const token: string | null = res.headers.get('Authorization');
     if (token !== null) {
       this.authService.setAuthToken(token);
-      console.log("User is authenticated\nNavigate to home page");
+      console.log("User is authenticated");
+
+      console.log("Set userEmail")
+      this.userService.setUserEmail(this.form.value.email);
+
+      console.log("Navigate to home page");
       this.router.navigate(['']);
     } else
       this.openErrorPage("Token not exits in response");
