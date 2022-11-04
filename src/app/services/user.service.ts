@@ -4,17 +4,17 @@ import {Injectable} from "@angular/core";
 export class UserService {
 
   private STORAGE_USER_EMAIL_ID: string = 'user_email';
+  private userEmail: string = '';
+
 
   public getUserEmail(): string{
-    console.log("get userEmail from localStorage");
-    const userEmailAtStorage = localStorage.getItem(this.STORAGE_USER_EMAIL_ID
-    );
-    return userEmailAtStorage === null ? '' : userEmailAtStorage;
+    console.log("get userEmail:%s from UserService", this.userEmail);
+    return this.userEmail;
   }
 
   public setUserEmail(userEmail: string): void {
-    console.log("set userEmail to localStorage");
-    localStorage.setItem(this.STORAGE_USER_EMAIL_ID, userEmail);
+    console.log("set userEmail:%s to UserService", userEmail);
+    this.userEmail = userEmail;
   }
 
   public removeUserEmail(): void {
@@ -22,4 +22,8 @@ export class UserService {
     localStorage.removeItem(this.STORAGE_USER_EMAIL_ID);
   }
 
+  public clearUserEmail(): void {
+    console.log("clear userEmail:%s in UserService", this.userEmail);
+    this.userEmail = '';
+  }
 }
