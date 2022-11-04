@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthenticationService} from "../../services/authentication.service";
 import {UserService} from "../../services/user.service";
 
@@ -7,9 +7,15 @@ import {UserService} from "../../services/user.service";
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
 
   constructor(private authService: AuthenticationService, public userService: UserService) { }
+
+  ngOnInit(): void {
+    if(this.isUserAuthenticate()) {
+      this.userService.setUserEmailFromApi();
+    }
+  }
 
   isUserAuthenticate(): boolean {
     return this.authService.hasAuthToken();
@@ -20,7 +26,7 @@ export class HeaderComponent {
   }
 
   onLogout() {
-    this.userService.removeUserEmail();
+    this.userService.clearUserEmail();
     this.authService.logout();
   }
 
