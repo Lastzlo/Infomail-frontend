@@ -16,7 +16,7 @@ export class HistoryComponent implements OnInit {
   isChecked: boolean = false;            // is all emails selected
   numberOfRows: number = 15;            // default number of table rows
   totalRecords!: number;               // total number of emails in history
-  loading: boolean = false;           // icon of loading before actions completed
+  loading: boolean = true;           // icon of loading before actions completed
   firstLoad: boolean = true;         // marker for sorting by emails Ids (for first load)
   emails!: ExecutedEmail[];         // all emails on current page (lazy loaded)
   maxSubjectLength = 65;           // max subject length in table that is not sliced
