@@ -32,9 +32,32 @@ html, body {
 .angular-editor-button {
   background-color: #ffd545 !important;
   border: 1px solid #383838 !important;
+  color: black;
 }
 
 .ae-font .ae-picker-label {
   background-color: #ffd545 !important;
   border: 2px solid #383838 !important;
+  color: black;
+}
+
+.ae-font.ae-expanded .ae-picker-label {
+  color: #383838 !important;
+}
+
+.ae-font.ae-expanded .ae-picker-options {
+  border-color: #363636 !important;
+}
+
+.ae-font .ae-picker-options {
+  background-color: #1d1d1d !important;
+}
+
+.ae-font .ae-picker-options .ae-picker-item.focused, .ae-font .ae-picker-options .ae-picker-item:hover {
+  background-color: #ffd545 !important;
+  color: #1e1e1e !important;
+}
+
+.ae-font .ae-picker-options .ae-picker-item.selected {
+  color: #1e1e1e !important;
 }
