@@ -18,6 +18,7 @@ export class AppComponent implements OnInit {
     // redundant
     console.log("FRONT_URL", environment.FRONT_URL)
     console.log("API_URL", environment.API_URL)
+    console.log("SHOW_LOGS", environment.SHOW_LOGS)
   }
 
 
