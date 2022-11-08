@@ -37,7 +37,7 @@ const routes: Routes = [
   {
     path: '', component: HomePageComponent, canActivate: [AuthGuard], canActivateChild: [AuthGuard],
     children: [
-      {path: '', pathMatch: 'full', redirectTo: 'history'},
+      {path: '', pathMatch: 'full', redirectTo: 'templates'},
       {
         path: 'tasks', children: [
           {path: '', component: TasksComponent},
