@@ -3,9 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
-  API_URL: process.env.NG_APP_API_URL  || 'http://localhost:8028',
-  FRONT_URL: process.env.NG_APP_FRONT_URL || 'http://localhost:4200'
+  ENABLE_PRODUCTION_MODE: false,                                      // turn on Angular production mode
+  API_URL: process.env.NG_APP_API_URL  || 'http://localhost:8028',    // url to the running Infomail server
+  FRONT_URL: process.env.NG_APP_FRONT_URL || 'http://localhost:4200', // url to the current
+  SHOW_LOGS: process.env.NG_APP_SHOW_LOGS || true                     // show logs in console
 };
 
 
